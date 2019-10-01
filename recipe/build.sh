@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# dectect macOS
-IS_MAX_OS=0
-if [ ! -z "${OSX_ARCH}" ]; then
-  IS_MAX_OS=1
-fi
-
 # stop on error
 set -eu -o pipefail
 
