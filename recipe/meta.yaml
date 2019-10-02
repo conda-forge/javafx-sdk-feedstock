@@ -1,13 +1,14 @@
 {% set name = "javafx-sdk" %}
-{% set version = "11.0.4" %}
+{% set version = "12.0.2" %}
+{% set number = "1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/javafxports/openjdk-jfx/archive/{{ version }}+1.tar.gz
-  sha256: f03d16adae701406ff9e1fc05e461a327ca4f97b5bf18b0d727037bb425ec25a
+  url: https://github.com/javafxports/openjdk-jfx/archive/{{ version }}+{{ number }}.tar.gz
+  sha256: 19a537129d9b2a66a9b7c2013297d8ef264f6106497c6d874db7782de1b65c8e
   patches:
     - linux.gradle.patch  # [linux]
     - mac.gradle.patch  # [osx]
