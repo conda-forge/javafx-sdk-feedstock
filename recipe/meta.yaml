@@ -14,7 +14,7 @@ source:
     - mac.gradle.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -46,6 +46,8 @@ requirements:
     - pango  # [linux]
     - xorg-libx11  # [linux]
     - xorg-libxtst  # [linux]
+  run_constrained:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
 test: 
   commands:
