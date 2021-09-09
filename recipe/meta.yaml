@@ -9,8 +9,7 @@ source:
   url: https://github.com/javafxports/openjdk-jfx/archive/{{ version }}+1.tar.gz
   sha256: 96e14e09335e49732c5e00567ff48efc5f0ef6413482dda814f1d7c7507d0057
   patches:
-    - linux.gradle.patch  # [linux]
-    - mac.gradle.patch  # [osx]
+    - gradle.patch
 
 build:
   number: 0
@@ -29,23 +28,65 @@ requirements:
     - {{ cdt('libxxf86vm-devel') }}  # [linux]
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - {{ cdt('libpng-devel') }}  # [linux]
+    - {{ cdt('libxrandr') }}  # [linux]
+    - {{ cdt('libxrandr-devel') }}  # [linux]
+    - {{ cdt('libxcursor-devel') }}  # [linux]
+    - {{ cdt('libxcomposite-devel') }}  # [linux]
+    - {{ cdt('libxdamage-devel') }}  # [linux]
+    - {{ cdt('libxinerama-devel') }}  # [linux]
+    - {{ cdt('libxtst-devel') }}  # [linux]
   host:
-    - coreutils >=8
+    - coreutils
+    - atk
     - gtk2
+    - gtk3
+    - cairo
     - pango
     - freetype
     - openjdk >=11
-  run:
-    - atk  # [linux]
-    - cairo  # [linux]
+    - glib
+    - gdk-pixbuf    
     - fontconfig  # [linux]
-    - gdk-pixbuf  # [linux]
-    - glib  # [linux]
-    - gtk2  # [linux]
-    - pango  # [linux]
     - xorg-libx11  # [linux]
+    - xorg-libxaw  # [linux]
+    - xorg-libxpm  # [linux]
+    - xorg-libxfixes  # [linux]
+    - xorg-libxft  # [linux]
+    - xorg-libxi  # [linux]
+    - xorg-libxrandr  # [linux]
+    - xorg-libxcursor  # [linux]
+    - xorg-libxcomposite  # [linux]
+    - xorg-libxdamage  # [linux]
+    - xorg-libxinerama  # [linux]
+    - xorg-xineramaproto  # [linux]
     - xorg-libxtst  # [linux]
-    - font-ttf-dejavu-sans-mono # [linux]
+    - font-ttf-dejavu-sans-mono  # [linux]
+  run:
+    - coreutils
+    - atk
+    - gtk2
+    - gtk3
+    - cairo
+    - pango
+    - freetype
+    - openjdk >=11
+    - glib
+    - gdk-pixbuf    
+    - fontconfig  # [linux]
+    - xorg-libx11  # [linux]
+    - xorg-libxaw  # [linux]
+    - xorg-libxpm  # [linux]
+    - xorg-libxfixes  # [linux]
+    - xorg-libxft  # [linux]
+    - xorg-libxi  # [linux]
+    - xorg-libxrandr  # [linux]
+    - xorg-libxcursor  # [linux]
+    - xorg-libxcomposite  # [linux]
+    - xorg-libxdamage  # [linux]
+    - xorg-libxinerama  # [linux]
+    - xorg-xineramaproto  # [linux]
+    - xorg-libxtst  # [linux]
+    - font-ttf-dejavu-sans-mono  # [linux]
   run_constrained:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
