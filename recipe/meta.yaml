@@ -1,5 +1,5 @@
 {% set name = "javafx-sdk" %}
-{% set version = "11.0.4" %}
+{% set version = "11.0.11" %}
 
 package:
   name: {{ name }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/javafxports/openjdk-jfx/archive/{{ version }}+1.tar.gz
-  sha256: f03d16adae701406ff9e1fc05e461a327ca4f97b5bf18b0d727037bb425ec25a
+  sha256: 96e14e09335e49732c5e00567ff48efc5f0ef6413482dda814f1d7c7507d0057
   patches:
     - linux.gradle.patch  # [linux]
     - mac.gradle.patch  # [osx]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -55,7 +55,7 @@ test:
 
 about:
   home: https://gluonhq.com/products/javafx/
-  license: GPL-2.0 + Classpath
+  license: GPL-2.0-only
   license_file: LICENSE
   summary: 'JavaFX library for Java'
   description: |
