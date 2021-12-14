@@ -1,0 +1,52 @@
+From 3d2dc1f8f909c28213ce38b24ebdb77e3e7fad06 Mon Sep 17 00:00:00 2001
+From: Ista Zahn <istazahn@gmail.com>
+Date: Thu, 9 Sep 2021 17:37:47 -0400
+Subject: [PATCH] fix build tool spec
+
+---
+ buildSrc/linux.gradle | 4 ++--
+ buildSrc/mac.gradle   | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/buildSrc/linux.gradle b/buildSrc/linux.gradle
+index 2e84bb51..0bd96179 100644
+--- a/buildSrc/linux.gradle
++++ b/buildSrc/linux.gradle
+@@ -209,8 +209,8 @@ setupTools("linux_freetype_tools",
+     }
+ )
+ 
+-def compiler = IS_COMPILE_PARFAIT ? "parfait-gcc" : "${toolchainDir}gcc";
+-def linker = IS_STATIC_BUILD ? "ar" : IS_COMPILE_PARFAIT ? "parfait-g++" : "${toolchainDir}g++";
++def compiler = IS_COMPILE_PARFAIT ? "parfait-gcc" : System.getenv('CC')
++def linker = IS_STATIC_BUILD ? "ar" : IS_COMPILE_PARFAIT ? "parfait-g++" : System.getenv('CXX')
+ 
+ LINUX.glass = [:]
+ LINUX.glass.variants = ["glass", "glassgtk2", "glassgtk3"]
+diff --git a/buildSrc/mac.gradle b/buildSrc/mac.gradle
+index 2783a593..025d7417 100644
+--- a/buildSrc/mac.gradle
++++ b/buildSrc/mac.gradle
+@@ -47,7 +47,7 @@ MAC.libDest = "lib"
+  * override these settings or pass them on the command line.
+  */
+ def prefSdkVersion = "10.15"
+-def defaultSdkPath = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${prefSdkVersion}.sdk";
++def defaultSdkPath = System.getenv('CONDA_BUILD_SYSROOT')
+ 
+ // Set the minimum API version that we require (developers do not need to override this)
+ // Note that this is not necessarily the same as the preferred SDK version
+@@ -144,8 +144,8 @@ if (hasProperty('toolchainDir')) {
+     toolchainDir = ""
+ }
+ 
+-def compiler = IS_COMPILE_PARFAIT ? "parfait-clang" : "${toolchainDir}clang";
+-def linker = IS_STATIC_BUILD ? "libtool" : IS_COMPILE_PARFAIT ? "parfait-clang++" : "${toolchainDir}clang++";
++def compiler = IS_COMPILE_PARFAIT ? "parfait-clang" : System.getenv('CC')
++def linker = IS_STATIC_BUILD ? "libtool" : IS_COMPILE_PARFAIT ? "parfait-clang++" : System.getenv('CXX')
+ 
+ MAC.glass = [:]
+ MAC.glass.javahInclude = [
+-- 
+2.33.0
+
