@@ -1,5 +1,5 @@
 {% set name = "javafx-sdk" %}
-{% set version = "12.0.2" %}
+{% set version = "13.0.2" %}
 {% set number = "1" %}
 
 package:
@@ -8,13 +8,13 @@ package:
 
 source:
   url: https://github.com/javafxports/openjdk-jfx/archive/{{ version }}+{{ number }}.tar.gz
-  sha256: 19a537129d9b2a66a9b7c2013297d8ef264f6106497c6d874db7782de1b65c8e
+  sha256: de1bc70b1c07b9bdf0931db351f6f7626f8eb24344c3911eb971822f5a36b723
   patches:
     - linux.gradle.patch  # [linux]
     - mac.gradle.patch  # [osx]
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win]
 
 requirements:
@@ -50,7 +50,7 @@ requirements:
   run_constrained:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
-test: 
+test:
   commands:
     - test -f "${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION%}/lib/javafx.base.jar"
 
@@ -58,7 +58,7 @@ about:
   home: https://gluonhq.com/products/javafx/
   license: GPL-2.0 + Classpath
   license_file: LICENSE
-  summary: 'JavaFX library for Java'
+  summary: JavaFX library for Java
   description: |
     OpenJFX is an open source, next generation client application platform for desktop, mobile and embedded systems based on JavaSE. It is a collaborative effort by many individuals and companies with the goal of producing a modern, efficient, and fully featured toolkit for developing rich client applications.
   doc_url: https://openjfx.io/
