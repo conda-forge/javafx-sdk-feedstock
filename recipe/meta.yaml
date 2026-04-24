@@ -14,7 +14,7 @@ source:
     - mac.gradle.patch  # [osx]
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
 
 requirements:
@@ -26,16 +26,16 @@ requirements:
     - gperf
     - pkgconfig
     - ant
-    - {{ cdt('libx11-devel') }}  # [linux]
-    - {{ cdt('libxxf86vm-devel') }}  # [linux]
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('libpng-devel') }}  # [linux]
   host:
     - coreutils >=8
     - gtk2
     - pango
     - freetype
     - openjdk >=11
+    - xorg-libx11                # [linux]
+    - xorg-libxxf86vm                # [linux]
+    - libgl-devel                    # [linux]
+    - libpng                     # [linux]
   run:
     - atk  # [linux]
     - cairo  # [linux]
@@ -50,7 +50,7 @@ requirements:
   run_constrained:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
-test: 
+test:
   commands:
     - test -f "${PREFIX}/lib/${PKG_NAME}-${PKG_VERSION%}/lib/javafx.base.jar"
 
